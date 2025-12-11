@@ -203,6 +203,11 @@ From **VHF-NI-App-Mk3-PRD-Mockup-First-v3.0.md Section 4.2**:
 **Measurement:** 100% of screen elements linked to component library  
 **Test:** Instance inspection
 
+### NFR-5: Layout Spacing
+**Requirement:** All content must have proper padding/margins - no content touching viewport edges  
+**Measurement:** Minimum 16px container padding on mobile, 24px tablet, 32px desktop  
+**Test:** Visual inspection at all breakpoints + layout spacing validation
+
 ---
 
 ## Constraints & Assumptions
@@ -307,6 +312,18 @@ From **VHF-NI-App-Mk3-PRD-Mockup-First-v3.0.md Section 4.2**:
 5. Verify prototype link works
 6. **Pass Criteria:** All documentation present and accessible
 
+**TC-7: Layout Spacing Validation**
+1. Open each of 12 screens in Figma
+2. Check mobile frame (375px): Verify minimum 16px left/right padding
+3. Check tablet frame (768px): Verify minimum 24px left/right padding
+4. Check desktop frame (1440px): Verify minimum 32px left/right padding
+5. Verify cards have internal padding (16px minimum)
+6. Verify forms have field spacing (16px between fields)
+7. Verify no text/icons/logos touching viewport edges
+8. Check container max-widths applied (sm: 640px, md: 768px, lg: 1024px, xl: 1280px)
+9. Verify grid gutters: 16px mobile, 24px tablet, 32px desktop
+10. **Pass Criteria:** All content has breathing room, no edge-to-edge layouts
+
 ---
 
 ## Deliverables
@@ -353,8 +370,45 @@ From **VHF-NI-App-Mk3-PRD-Mockup-First-v3.0.md Section 4.2**:
 - **PBS:** VHF-Mockup-FigmaMake-PBS-v1.0.md (see companion document)
 - **WBS:** VHF-Mockup-FigmaMake-WBS-v1.0.md (see companion document)
 - **Implementation Plan:** Plan ID a4948b96-1c10-41f6-a18c-29b86a73d945
+- **Layout Spacing Fix:** VHF-Design-System-Layout-Spacing-Fix-v1.0.md (CRITICAL - Applied 2024-12-11)
 
 ---
 
-**Document Status:** ✅ Ready for Execution  
+## Change Control Log
+
+### Version 1.1.0 - 2024-12-11
+**Type:** CRITICAL UPDATE - Layout Spacing Requirements Added  
+**Status:** Active
+
+**Changes:**
+- Added NFR-5: Layout Spacing requirement (minimum padding specifications)
+- Added TC-7: Layout Spacing Validation test case (10-step validation)
+- Added reference to VHF-Design-System-Layout-Spacing-Fix-v1.0.md
+- Updated dependencies: Design Tokens v3.0 now requires layout tokens
+
+**Reason:**
+- FigmaMake mockups showed content touching viewport edges at all breakpoints
+- Design system lacked container padding and layout margin specifications
+- Blocking issue for user testing (WCAG 2.1 AA compliance)
+
+**Impact:**
+- All 12 screens require layout token application
+- Responsive padding matrix now mandatory: 16px mobile, 24px tablet, 32px desktop
+- Card internal padding required: minimum 16px
+- Form field spacing required: 16px between fields, 8px label-to-input
+
+**Validation:**
+- TC-7 must pass before user testing
+- Visual inspection at all breakpoints (mobile/tablet/desktop)
+- No content may touch viewport edges
+
+**References:**
+- Layout Fix Document: https://github.com/ajrmooreuk/VHF-App-Mk3/blob/main/VHF-Design-System-Layout-Spacing-Fix-v1.0.md
+- Commit: d8275f4
+
+---
+
+**Document Status:** ✅ Active - Updated with Layout Spacing Requirements  
+**Version:** 1.1.0  
+**Last Updated:** 2024-12-11  
 **Approval:** Pending stakeholder review
