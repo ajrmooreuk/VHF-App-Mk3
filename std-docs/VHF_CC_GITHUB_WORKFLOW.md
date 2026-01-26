@@ -24,10 +24,10 @@ This document defines how Change Control (CC) items integrate with GitHub Issues
 
 > **IMPORTANT:** This workflow document complements the **Master Change Control Register**:
 >
-> | Document | Location | Purpose |
-> |----------|----------|---------|
-> | [VHF-NI-App-Mk3-Master-Change-Control-v1.0.md](../VHF-NI-App-Mk3-Master-Change-Control-v1.0.md) | Root | Detailed CC register, version tracking, approval status |
-> | This document (VHF_CC_GITHUB_WORKFLOW.md) | std-docs/ | GitHub integration workflow |
+> | Document | Path | Purpose |
+> |----------|------|---------|
+> | **VHF-NI-App-Mk3-Master-Change-Control-v1.0.md** | `/VHF-NI-App-Mk3-Master-Change-Control-v1.0.md` | Detailed CC register, version tracking, approval status |
+> | This document | `/std-docs/VHF_CC_GITHUB_WORKFLOW.md` | GitHub integration workflow |
 >
 > The Master Change Control Register contains:
 > - Complete document version register (Section 3)

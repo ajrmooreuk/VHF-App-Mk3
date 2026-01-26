@@ -25,12 +25,12 @@ This Document Control Register (DCR) provides a single source of truth for all V
 
 > **IMPORTANT:** This register works alongside the **Master Change Control Register**:
 >
-> | Document | Location | Purpose |
-> |----------|----------|---------|
-> | [VHF-NI-App-Mk3-Master-Change-Control-v1.0.md](../VHF-NI-App-Mk3-Master-Change-Control-v1.0.md) | Root | Detailed change tracking, design token verification, brand approval status |
-> | This document (VHF_DOCUMENT_CONTROL_REGISTER.md) | std-docs/ | Document inventory and hierarchy |
+> | Document | Path | Purpose |
+> |----------|------|---------|
+> | **VHF-NI-App-Mk3-Master-Change-Control-v1.0.md** | `/VHF-NI-App-Mk3-Master-Change-Control-v1.0.md` | Detailed change tracking, design token verification, brand approval status |
+> | This document | `/std-docs/VHF_DOCUMENT_CONTROL_REGISTER.md` | Document inventory and hierarchy |
 >
-> For **detailed change history**, **design token verification**, and **approval sign-offs**, refer to the Master Change Control Register.
+> For **detailed change history**, **design token verification**, and **approval sign-offs**, refer to the Master Change Control Register at project root.
 
 ---
 
