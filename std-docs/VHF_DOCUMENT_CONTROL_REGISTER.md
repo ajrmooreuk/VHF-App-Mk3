@@ -21,6 +21,17 @@ This Document Control Register (DCR) provides a single source of truth for all V
 - Ensures document traceability
 - Supports governance and audit requirements
 
+### 1.1 Master Change Control Reference
+
+> **IMPORTANT:** This register works alongside the **Master Change Control Register**:
+>
+> | Document | Location | Purpose |
+> |----------|----------|---------|
+> | [VHF-NI-App-Mk3-Master-Change-Control-v1.0.md](../VHF-NI-App-Mk3-Master-Change-Control-v1.0.md) | Root | Detailed change tracking, design token verification, brand approval status |
+> | This document (VHF_DOCUMENT_CONTROL_REGISTER.md) | std-docs/ | Document inventory and hierarchy |
+>
+> For **detailed change history**, **design token verification**, and **approval sign-offs**, refer to the Master Change Control Register.
+
 ---
 
 ## 2. DOCUMENT INVENTORY
