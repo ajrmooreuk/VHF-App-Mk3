@@ -110,7 +110,7 @@ VHF-App-Mk3/
 | Doc ID | Document Name | Version | Status |
 |--------|---------------|---------|--------|
 | VHF-STD-001 | VHF_DOCUMENT_CONTROL_REGISTER.md | 1.2 | Active |
-| VHF-STD-002 | VHF_CC_GITHUB_WORKFLOW.md | 1.1 | Active |
+| VHF-STD-002 | VHF_CC_GITHUB_WORKFLOW.md | 1.2 | Active |
 | VHF-STD-003 | VHF-NI-App-Mk3-Master-Change-Control-v1.0.md | 1.0 | Active |
 | VHF-STD-004 | VHF-NI-App-Mk3-Document-Manifest-v2.0.md | 2.0 | Active |
 | VHF-STD-005 | VHF-NI-App-Mk3-Document-Manifest-v3.0.md | 3.0 | Active |

@@ -6,7 +6,7 @@
 | Document Control | |
 |-----------------|---|
 | **Document Number** | VHF-STD-002 |
-| **Version** | 1.1 |
+| **Version** | 1.2 |
 | **Status** | Active |
 | **Date** | 26 January 2026 |
 
@@ -36,6 +36,13 @@ This document defines how Change Control (CC) items integrate with GitHub Issues
 > - Design token verification matrix (Section 5)
 > - Brand asset mapping (Section 6)
 > - Approval workflows and sign-off records (Section 8)
+
+### 1.2 Quick Start - Ready to Use
+
+- **Create issues** with `[CC-###]` prefix (e.g., `[CC-001] Add dashboard component`)
+- **Apply labels:** `cc-item`, `epic:*`, `wbs:*`, `priority:*`
+- **Track on Kanban:** Project #7 "@ajrmooreuk's VHF App"
+- **Follow value-first gate:** VALUE → DONE → WORKS (Section 2)
 
 ---
 
@@ -327,5 +334,5 @@ Implement responsive navigation component.
 
 **--- END OF WORKFLOW DOCUMENT ---**
 
-*Version 1.1 | Active*
+*Version 1.2 | Active*
 *26 January 2026*
