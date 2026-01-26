@@ -6,7 +6,7 @@
 | Document Control | |
 |-----------------|---|
 | **Document Number** | VHF-DCR-001 |
-| **Version** | 1.1 |
+| **Version** | 1.2 |
 | **Status** | Active |
 | **Date** | 26 January 2026 |
 
@@ -43,7 +43,7 @@ VHF-App-Mk3/
 │   ├── DESIGN-SYSTEM/      # Tokens, brand, Figma, components (16 docs)
 │   ├── AGENTS/             # Agent specifications (3 docs)
 │   ├── IMPLEMENTATION/     # Dev guides, Claude Code setup (6 docs)
-│   ├── STD-DOCS/           # Governance, CC, manifests (7 docs)
+│   ├── STD-DOCS/           # Governance, CC, manifests (8 docs)
 │   └── REFERENCE/          # Summaries, quick refs (7 docs)
 ├── PROPOSALS/              # PRDs, PBS, WBS, HLD, Implementation templates (9 docs)
 ├── .github/                # CI/CD, templates
@@ -105,17 +105,18 @@ VHF-App-Mk3/
 | VHF-IMP-005 | VHF-NI-App-Mk3-Claude-Code-Transition-Guide-v1.0.md | 1.0 | Active |
 | VHF-IMP-006 | VHF-NI-App-Mk3-Implementation-Authorization-v1.0.md | 1.0 | Active |
 
-### 3.5 STD-DOCS (7 docs)
+### 3.5 STD-DOCS (8 docs)
 
 | Doc ID | Document Name | Version | Status |
 |--------|---------------|---------|--------|
-| VHF-STD-001 | VHF_DOCUMENT_CONTROL_REGISTER.md | 1.1 | Active |
-| VHF-STD-002 | VHF_CC_GITHUB_WORKFLOW.md | 1.0 | Active |
+| VHF-STD-001 | VHF_DOCUMENT_CONTROL_REGISTER.md | 1.2 | Active |
+| VHF-STD-002 | VHF_CC_GITHUB_WORKFLOW.md | 1.1 | Active |
 | VHF-STD-003 | VHF-NI-App-Mk3-Master-Change-Control-v1.0.md | 1.0 | Active |
 | VHF-STD-004 | VHF-NI-App-Mk3-Document-Manifest-v2.0.md | 2.0 | Active |
 | VHF-STD-005 | VHF-NI-App-Mk3-Document-Manifest-v3.0.md | 3.0 | Active |
 | VHF-STD-006 | VHF-NI-App-Mk3-Update-Manifest-v3.0.md | 3.0 | Active |
 | VHF-STD-007 | VHF-NI-App-Mk3-Sync-Verification-v1.0.md | 1.0 | Active |
+| VHF-STD-008 | VHF_UNIFIED_REGISTER_PROCESS.md | 1.0 | Active |
 
 ### 3.6 REFERENCE (7 docs)
 
@@ -167,10 +168,11 @@ VHF-App-Mk3/
 | 26-Jan-2026 | PROPOSALS folder created | Claude Code | Copied 3 PRD/requirements docs to PROPOSALS for template use |
 | 26-Jan-2026 | Added PBS/WBS to PROPOSALS | Claude Code | Copied 3 PBS/WBS docs (total 6 templates) |
 | 26-Jan-2026 | Added EOMS-based templates | Claude Code | Created HLD, PRD, Implementation Plan templates from EOMS-Ph1 (total 9 docs) |
+| 26-Jan-2026 | Enhanced GitHub workflow docs | Claude Code | Updated VHF_CC_GITHUB_WORKFLOW.md (v1.1) with value categories, labels, automation; Created VHF_UNIFIED_REGISTER_PROCESS.md (v1.0) |
 
 ---
 
 **--- END OF DOCUMENT CONTROL REGISTER ---**
 
-*Version 1.1 | Active*
+*Version 1.2 | Active*
 *26 January 2026*
