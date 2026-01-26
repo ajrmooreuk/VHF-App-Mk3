@@ -6,7 +6,7 @@
 | Document Control | |
 |-----------------|---|
 | **Document Number** | VHF-STD-002 |
-| **Version** | 1.3 |
+| **Version** | 1.4 |
 | **Status** | Active |
 | **Date** | 26 January 2026 |
 
@@ -272,7 +272,97 @@ CC Reference: CC-001
 
 ---
 
-## 10. COMMIT POLICY
+## 10. BATCH CHANGE PLANNING
+
+### Overview
+
+Plan changes before execution. CC numbers link spec → branch → PR → commit.
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  PLAN → BATCH → EXECUTE → COMMIT                        │
+├─────────────────────────────────────────────────────────┤
+│  1. SPEC: List changes with CC-### numbers              │
+│  2. BATCH: Group related changes into feature branch    │
+│  3. EXECUTE: Make changes per spec                      │
+│  4. COMMIT: Reference CC-### in commit message          │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Step 1: Spec Planned Changes
+
+Before starting work, document what will change:
+
+```markdown
+## Change Batch: [Feature Name]
+Branch: feature/cc-001-feature-name
+Date: DD-MMM-YYYY
+
+| CC-### | File | Change | Status |
+|--------|------|--------|--------|
+| CC-001 | src/component.tsx | Add new prop | Pending |
+| CC-002 | docs/README.md | Update API docs | Pending |
+| CC-003 | tests/component.test.ts | Add unit tests | Pending |
+```
+
+### Step 2: Create Feature Branch
+
+```bash
+git checkout main && git pull origin main
+git checkout -b feature/cc-001-feature-name
+```
+
+Branch name uses **first CC number** from batch.
+
+### Step 3: Execute Changes
+
+Work through spec, updating status as you go:
+
+| CC-### | File | Change | Status |
+|--------|------|--------|--------|
+| CC-001 | src/component.tsx | Add new prop | **Done** |
+| CC-002 | docs/README.md | Update API docs | **Done** |
+| CC-003 | tests/component.test.ts | Add unit tests | In Progress |
+
+### Step 4: Commit with CC References
+
+```bash
+git add .
+git commit -m "CC-001,CC-002,CC-003: Add feature with docs and tests
+
+- CC-001: Add new prop to component
+- CC-002: Update API documentation
+- CC-003: Add unit tests for new functionality
+
+Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>"
+```
+
+### Step 5: Create PR
+
+PR title includes primary CC number:
+
+```bash
+gh pr create \
+  --title "CC-001: Add feature with docs and tests" \
+  --body "## Changes
+- CC-001: Add new prop to component
+- CC-002: Update API documentation
+- CC-003: Add unit tests
+
+## CC References
+Closes CC-001, CC-002, CC-003"
+```
+
+### Traceability Chain
+
+```
+CC Register     →  Feature Branch      →  Commits           →  PR
+CC-001,002,003     feature/cc-001-...     CC-001,002,003:...    #PR links to CC
+```
+
+---
+
+## 11. COMMIT POLICY
 
 ### When to Use Feature Branch + PR
 - **Code changes** - Any source code modifications
@@ -291,7 +381,7 @@ CC Reference: CC-001
 
 ---
 
-## 11. AUTOMATION (FUTURE)
+## 12. AUTOMATION (FUTURE)
 
 ### Git Hooks
 ```bash
@@ -309,7 +399,7 @@ CC Reference: CC-001
 
 ---
 
-## 12. QUICK REFERENCE
+## 13. QUICK REFERENCE
 
 ### Create Issue from CC Item
 ```bash
@@ -334,7 +424,7 @@ Implement responsive navigation component.
 
 ---
 
-## 13. SUMMARY
+## 14. SUMMARY
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -353,5 +443,5 @@ Implement responsive navigation component.
 
 **--- END OF WORKFLOW DOCUMENT ---**
 
-*Version 1.3 | Active*
+*Version 1.4 | Active*
 *26 January 2026*
