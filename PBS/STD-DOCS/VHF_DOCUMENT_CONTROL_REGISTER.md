@@ -45,7 +45,7 @@ VHF-App-Mk3/
 │   ├── IMPLEMENTATION/     # Dev guides, Claude Code setup (6 docs)
 │   ├── STD-DOCS/           # Governance, CC, manifests (7 docs)
 │   └── REFERENCE/          # Summaries, quick refs (7 docs)
-├── PROPOSALS/              # Future proposals
+├── PROPOSALS/              # PRDs, PBS, WBS, HLD, Implementation templates (9 docs)
 ├── .github/                # CI/CD, templates
 └── README.md
 ```
@@ -129,6 +129,20 @@ VHF-App-Mk3/
 | VHF-REF-006 | SESSION-SUMMARY-2024-12-05.md | 1.0 | Active |
 | VHF-REF-007 | VHF-NI-App-Mk3-ToDo-Actions-v1.0.md | 1.0 | Active |
 
+### 3.7 PROPOSALS (9 docs)
+
+| Doc ID | Document Name | Version | Status |
+|--------|---------------|---------|--------|
+| VHF-PROP-001 | VHF-NI-App-Mk3-PRD-Mockup-First-v3.0.md | 3.0 | Active |
+| VHF-PROP-002 | VHF-Mockup-FigmaMake-PRD-v1.0.md | 1.0 | Active |
+| VHF-PROP-003 | VHF-Mockup-FigmaMake-Documentation-Requirements.md | 1.0 | Active |
+| VHF-PROP-004 | VHF-Mockup-FigmaMake-PBS-v1.0.md | 1.0 | Active |
+| VHF-PROP-005 | viridian-product-breakdown-structure.md | 1.0 | Active |
+| VHF-PROP-006 | viridian-work-breakdown-structure.md | 1.0 | Active |
+| VHF-PROP-007 | VHF_HLD_TEMPLATE.md | 1.0 | Active |
+| VHF-PROP-008 | VHF_PRD_TEMPLATE.md | 1.0 | Active |
+| VHF-PROP-009 | VHF_IMPLEMENTATION_PLAN_TEMPLATE.md | 1.0 | Active |
+
 ---
 
 ## 4. VERSION CONTROL POLICY
@@ -150,6 +164,9 @@ VHF-App-Mk3/
 |------|--------|-----|-------|
 | 26-Jan-2026 | Register created | Technical Adviser | Initial version |
 | 26-Jan-2026 | PBS reorganisation | Technical Adviser | Moved 45 docs into PBS structure |
+| 26-Jan-2026 | PROPOSALS folder created | Claude Code | Copied 3 PRD/requirements docs to PROPOSALS for template use |
+| 26-Jan-2026 | Added PBS/WBS to PROPOSALS | Claude Code | Copied 3 PBS/WBS docs (total 6 templates) |
+| 26-Jan-2026 | Added EOMS-based templates | Claude Code | Created HLD, PRD, Implementation Plan templates from EOMS-Ph1 (total 9 docs) |
 
 ---
 
