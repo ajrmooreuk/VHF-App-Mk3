@@ -6,7 +6,7 @@
 | Document Control | |
 |-----------------|---|
 | **Document Number** | VHF-STD-002 |
-| **Version** | 1.2 |
+| **Version** | 1.3 |
 | **Status** | Active |
 | **Date** | 26 January 2026 |
 
@@ -272,7 +272,26 @@ CC Reference: CC-001
 
 ---
 
-## 10. AUTOMATION (FUTURE)
+## 10. COMMIT POLICY
+
+### When to Use Feature Branch + PR
+- **Code changes** - Any source code modifications
+- **New features** - Adding functionality
+- **Multi-file changes** - Changes spanning multiple documents
+- **Structural changes** - Reorganising folders, renaming files
+- **CC-tracked items** - All items with CC reference numbers
+
+### When Direct to Main is Acceptable
+- **Minor doc updates** - Typo fixes, formatting corrections
+- **Version bumps** - Updating version numbers after PR merge
+- **Quick Start additions** - Adding operational notes post-setup
+- **Single-file cosmetic changes** - Non-functional updates
+
+**Rule:** When in doubt, use a PR. Traceability > convenience.
+
+---
+
+## 11. AUTOMATION (FUTURE)
 
 ### Git Hooks
 ```bash
@@ -290,7 +309,7 @@ CC Reference: CC-001
 
 ---
 
-## 11. QUICK REFERENCE
+## 12. QUICK REFERENCE
 
 ### Create Issue from CC Item
 ```bash
@@ -315,7 +334,7 @@ Implement responsive navigation component.
 
 ---
 
-## 12. SUMMARY
+## 13. SUMMARY
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -334,5 +353,5 @@ Implement responsive navigation component.
 
 **--- END OF WORKFLOW DOCUMENT ---**
 
-*Version 1.2 | Active*
+*Version 1.3 | Active*
 *26 January 2026*
