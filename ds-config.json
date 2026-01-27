@@ -1,0 +1,20 @@
+{
+  "project": {
+    "name": "VHF Viridian",
+    "repo": "ajrmooreuk/VHF-ds-e2e-test",
+    "created": "2026-01-27T13:32:57Z"
+  },
+  "figma": {
+    "fileKey": "TjmU0p5Q55SWDq4vO5G0Lr",
+    "extractionEndpoint": "get_variable_defs"
+  },
+  "supabase": {
+    "projectRef": "TODO_ADD_SUPABASE_PROJECT_REF",
+    "migrationFile": "supabase/migrations/001_design_system.sql"
+  },
+  "designSystem": {
+    "ontologyVersion": "1.0.0",
+    "tokenTiers": ["primitives", "semantics", "components"],
+    "seedFile": "docs/tokens/seed-design-system.json"
+  }
+}
