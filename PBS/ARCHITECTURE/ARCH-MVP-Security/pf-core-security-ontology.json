@@ -1,0 +1,400 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "sec": "https://azlan.ai/ontology/pf-core/security/",
+    "ea": "https://azlan.ai/ontology/enterprise-architecture/",
+    "rrr": "https://azlan.ai/ontology/rrr/",
+    "rbac": "https://azlan.ai/ontology/rbac/",
+    "pfc": "https://azlan.ai/ontology/pf-core/",
+    "pfi": "https://azlan.ai/ontology/pf-instance/",
+    "agent": "https://azlan.ai/ontology/pf-core/agent/",
+    "wf": "https://azlan.ai/ontology/pf-core/workflow/",
+    "vsem": "https://wings4mind.ai/ontology/vsem/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "sec:authenticates": {"@type": "@id"},
+    "sec:authorises": {"@type": "@id"},
+    "sec:governs": {"@type": "@id"},
+    "sec:enforces": {"@type": "@id"},
+    "sec:audits": {"@type": "@id"},
+    "sec:inheritsFrom": {"@type": "@id"},
+    "sec:extendsRole": {"@type": "@id"},
+    "sec:grantsPermission": {"@type": "@id"},
+    "sec:restrictsAccess": {"@type": "@id"},
+    "sec:protects": {"@type": "@id"},
+    "sec:monitors": {"@type": "@id"},
+    "sec:escalatesTo": {"@type": "@id"},
+    "sec:trustsAgent": {"@type": "@id"},
+    "sec:constrainedBy": {"@type": "@id"},
+    "sec:satisfiesCompliance": {"@type": "@id"},
+    "sec:triggersEvent": {"@type": "@id"},
+    "sec:requiredForStep": {"@type": "@id"},
+    "sec:appliesPolicy": {"@type": "@id"},
+    "sec:boundToTenant": {"@type": "@id"},
+    "sec:ownsData": {"@type": "@id"},
+    "sec:delegatesTo": {"@type": "@id"},
+    "sec:overriddenBy": {"@type": "@id"},
+    "sec:mapsToEA": {"@type": "@id"},
+    "sec:implementedBy": {"@type": "@id"},
+    "sec:validatedBy": {"@type": "@id"},
+    "sec:revokedBy": {"@type": "@id"},
+    "sec:activatedBy": {"@type": "@id"},
+    "sec:scopedTo": {"@type": "@id"},
+    "sec:dependsOn": {"@type": "@id"}
+  },
+  "@graph": [
+    {
+      "@id": "sec:PFCoreSecurityOntology",
+      "@type": "DefinedTermSet",
+      "name": "PF-Core Security Ontology",
+      "description": "Comprehensive security ontology for PF-Core platform covering identity, access control, audit, agent security, workflow security, and compliance mapping. Designed for DB integration with Supabase RLS and tenant isolation.",
+      "version": "1.0.0",
+      "dateCreated": "2026-02-09",
+      "creator": {"@type": "Organization", "name": "Azlan / PF-Core"},
+      "isPartOf": {"@id": "ea:SecurityArchitecture"},
+      "license": "https://creativecommons.org/licenses/by/4.0/"
+    },
+
+    {"@type": "rdfs:Class", "@id": "sec:SecurityEntity", "rdfs:subClassOf": {"@id": "schema:Thing"}, "rdfs:label": "Security Entity", "rdfs:comment": "Base class for all PF-Core security ontology entities"},
+
+    {"@type": "rdfs:Class", "@id": "sec:SecurityPrincipal", "rdfs:subClassOf": [{"@id": "schema:Person"}, {"@id": "sec:SecurityEntity"}], "rdfs:label": "Security Principal", "rdfs:comment": "Any entity that can be authenticated and authorised — human user, agent, or system"},
+    {"@type": "rdfs:Class", "@id": "sec:HumanPrincipal", "rdfs:subClassOf": {"@id": "sec:SecurityPrincipal"}, "rdfs:label": "Human Principal", "rdfs:comment": "A human user of the platform"},
+    {"@type": "rdfs:Class", "@id": "sec:AgentPrincipal", "rdfs:subClassOf": {"@id": "sec:SecurityPrincipal"}, "rdfs:label": "Agent Principal", "rdfs:comment": "An AI agent operating within the platform with defined security identity"},
+    {"@type": "rdfs:Class", "@id": "sec:SystemPrincipal", "rdfs:subClassOf": {"@id": "sec:SecurityPrincipal"}, "rdfs:label": "System Principal", "rdfs:comment": "A system or service account (API keys, webhooks, integrations)"},
+
+    {"@type": "rdfs:Class", "@id": "sec:Role", "rdfs:subClassOf": [{"@id": "schema:Role"}, {"@id": "sec:SecurityEntity"}], "rdfs:label": "Security Role", "rdfs:comment": "A named collection of permissions that can be assigned to principals"},
+    {"@type": "rdfs:Class", "@id": "sec:CoreRole", "rdfs:subClassOf": {"@id": "sec:Role"}, "rdfs:label": "Core Platform Role", "rdfs:comment": "A role defined at PF-Core level — immutable by instances"},
+    {"@type": "rdfs:Class", "@id": "sec:InstanceRole", "rdfs:subClassOf": {"@id": "sec:Role"}, "rdfs:label": "Instance Role", "rdfs:comment": "A role defined at PF-Instance level — extends core roles"},
+    {"@type": "rdfs:Class", "@id": "sec:ProductRole", "rdfs:subClassOf": {"@id": "sec:Role"}, "rdfs:label": "Product/Service Role", "rdfs:comment": "A role specific to a product or service within an instance"},
+    {"@type": "rdfs:Class", "@id": "sec:AgentRole", "rdfs:subClassOf": {"@id": "sec:Role"}, "rdfs:label": "Agent Role", "rdfs:comment": "A role assigned to an AI agent defining its operational boundaries"},
+
+    {"@type": "rdfs:Class", "@id": "sec:Permission", "rdfs:subClassOf": [{"@id": "schema:Action"}, {"@id": "sec:SecurityEntity"}], "rdfs:label": "Permission", "rdfs:comment": "A specific authorised action on a resource"},
+    {"@type": "rdfs:Class", "@id": "sec:DataPermission", "rdfs:subClassOf": {"@id": "sec:Permission"}, "rdfs:label": "Data Permission", "rdfs:comment": "Permission to perform CRUD operations on data resources"},
+    {"@type": "rdfs:Class", "@id": "sec:FunctionPermission", "rdfs:subClassOf": {"@id": "sec:Permission"}, "rdfs:label": "Function Permission", "rdfs:comment": "Permission to invoke a platform function or API"},
+    {"@type": "rdfs:Class", "@id": "sec:NavigationPermission", "rdfs:subClassOf": {"@id": "sec:Permission"}, "rdfs:label": "Navigation Permission", "rdfs:comment": "Permission to access a UI route or navigation item"},
+    {"@type": "rdfs:Class", "@id": "sec:AgentPermission", "rdfs:subClassOf": {"@id": "sec:Permission"}, "rdfs:label": "Agent Permission", "rdfs:comment": "Permission for an agent to perform a specific action type"},
+
+    {"@type": "rdfs:Class", "@id": "sec:SecurityPolicy", "rdfs:subClassOf": [{"@id": "schema:Legislation"}, {"@id": "sec:SecurityEntity"}], "rdfs:label": "Security Policy", "rdfs:comment": "A defined rule governing security behaviour"},
+    {"@type": "rdfs:Class", "@id": "sec:RLSPolicy", "rdfs:subClassOf": {"@id": "sec:SecurityPolicy"}, "rdfs:label": "Row-Level Security Policy", "rdfs:comment": "Database-level policy enforcing tenant data isolation via Supabase RLS"},
+    {"@type": "rdfs:Class", "@id": "sec:TenantIsolationPolicy", "rdfs:subClassOf": {"@id": "sec:SecurityPolicy"}, "rdfs:label": "Tenant Isolation Policy", "rdfs:comment": "Policy ensuring complete data separation between tenants/organisations"},
+    {"@type": "rdfs:Class", "@id": "sec:PasswordPolicy", "rdfs:subClassOf": {"@id": "sec:SecurityPolicy"}, "rdfs:label": "Password Policy", "rdfs:comment": "Rules governing password complexity, rotation, and storage"},
+    {"@type": "rdfs:Class", "@id": "sec:SessionPolicy", "rdfs:subClassOf": {"@id": "sec:SecurityPolicy"}, "rdfs:label": "Session Policy", "rdfs:comment": "Rules governing session duration, refresh, and invalidation"},
+    {"@type": "rdfs:Class", "@id": "sec:AgentTrustPolicy", "rdfs:subClassOf": {"@id": "sec:SecurityPolicy"}, "rdfs:label": "Agent Trust Policy", "rdfs:comment": "Policy defining trust relationships between agents"},
+
+    {"@type": "rdfs:Class", "@id": "sec:SecurityControl", "rdfs:subClassOf": [{"@id": "schema:Action"}, {"@id": "sec:SecurityEntity"}], "rdfs:label": "Security Control", "rdfs:comment": "A technical or procedural safeguard implementing a security policy"},
+    {"@type": "rdfs:Class", "@id": "sec:AuthenticationControl", "rdfs:subClassOf": {"@id": "sec:SecurityControl"}, "rdfs:label": "Authentication Control", "rdfs:comment": "Control verifying identity of a principal"},
+    {"@type": "rdfs:Class", "@id": "sec:AuthorisationControl", "rdfs:subClassOf": {"@id": "sec:SecurityControl"}, "rdfs:label": "Authorisation Control", "rdfs:comment": "Control verifying permission of an authenticated principal"},
+    {"@type": "rdfs:Class", "@id": "sec:EncryptionControl", "rdfs:subClassOf": {"@id": "sec:SecurityControl"}, "rdfs:label": "Encryption Control", "rdfs:comment": "Control ensuring data encryption at rest and in transit"},
+    {"@type": "rdfs:Class", "@id": "sec:AuditControl", "rdfs:subClassOf": {"@id": "sec:SecurityControl"}, "rdfs:label": "Audit Control", "rdfs:comment": "Control capturing security-relevant events for review"},
+
+    {"@type": "rdfs:Class", "@id": "sec:AuditEvent", "rdfs:subClassOf": [{"@id": "schema:Event"}, {"@id": "sec:SecurityEntity"}], "rdfs:label": "Audit Event", "rdfs:comment": "A recorded security-relevant event"},
+    {"@type": "rdfs:Class", "@id": "sec:AuthenticationEvent", "rdfs:subClassOf": {"@id": "sec:AuditEvent"}, "rdfs:label": "Authentication Event", "rdfs:comment": "Login, logout, failed authentication attempts"},
+    {"@type": "rdfs:Class", "@id": "sec:AuthorisationEvent", "rdfs:subClassOf": {"@id": "sec:AuditEvent"}, "rdfs:label": "Authorisation Event", "rdfs:comment": "Permission granted, denied, or escalated"},
+    {"@type": "rdfs:Class", "@id": "sec:DataAccessEvent", "rdfs:subClassOf": {"@id": "sec:AuditEvent"}, "rdfs:label": "Data Access Event", "rdfs:comment": "CRUD operations on data resources"},
+    {"@type": "rdfs:Class", "@id": "sec:AgentActionEvent", "rdfs:subClassOf": {"@id": "sec:AuditEvent"}, "rdfs:label": "Agent Action Event", "rdfs:comment": "Actions performed by AI agents"},
+    {"@type": "rdfs:Class", "@id": "sec:ConfigChangeEvent", "rdfs:subClassOf": {"@id": "sec:AuditEvent"}, "rdfs:label": "Configuration Change Event", "rdfs:comment": "Changes to security configuration, roles, or policies"},
+
+    {"@type": "rdfs:Class", "@id": "sec:Tenant", "rdfs:subClassOf": [{"@id": "schema:Organization"}, {"@id": "sec:SecurityEntity"}], "rdfs:label": "Tenant", "rdfs:comment": "An isolated organisation context within PF-Core multi-tenancy"},
+    {"@type": "rdfs:Class", "@id": "sec:SecurityScope", "rdfs:subClassOf": {"@id": "sec:SecurityEntity"}, "rdfs:label": "Security Scope", "rdfs:comment": "The boundary within which a permission or policy applies"},
+    {"@type": "rdfs:Class", "@id": "sec:ComplianceRequirement", "rdfs:subClassOf": [{"@id": "schema:Legislation"}, {"@id": "sec:SecurityEntity"}], "rdfs:label": "Compliance Requirement", "rdfs:comment": "A regulatory or standards-based requirement that security controls must satisfy"},
+
+    {
+      "@type": "rdfs:Class",
+      "@id": "sec:SecurityInheritanceModel",
+      "rdfs:subClassOf": {"@id": "sec:SecurityEntity"},
+      "rdfs:label": "Security Inheritance Model",
+      "rdfs:comment": "Defines how security definitions cascade from PF-Core → PF-Instance → Product/Service"
+    },
+
+    {
+      "@id": "sec:CoreToInstanceInheritance",
+      "@type": "sec:SecurityInheritanceModel",
+      "name": "Core-to-Instance Security Inheritance",
+      "description": "PF-Core security definitions are inherited by all PF-Instances. Instances can extend (add roles, permissions) but cannot remove or weaken core security controls.",
+      "sec:rules": [
+        "Core roles are immutable at instance level",
+        "Instance roles MUST extend a core role as parent",
+        "Core RLS policies cannot be disabled by instances",
+        "Core audit requirements apply to all instances",
+        "Instance-specific permissions are additive only"
+      ]
+    },
+
+    {
+      "@id": "sec:InstanceToProductInheritance",
+      "@type": "sec:SecurityInheritanceModel",
+      "name": "Instance-to-Product Security Inheritance",
+      "description": "PF-Instance security definitions cascade to products/services within the instance. Product roles extend instance roles for domain-specific permissions.",
+      "sec:rules": [
+        "Product roles extend instance roles",
+        "Product permissions scoped to product data/functions",
+        "Product cannot weaken instance security controls",
+        "Product audit events tagged with product identifier"
+      ]
+    },
+
+    {
+      "@id": "rbac:SuperAdmin",
+      "@type": "sec:CoreRole",
+      "name": "Super Administrator",
+      "description": "Platform-wide superuser with full access across all tenants and instances. Reserved for platform operators.",
+      "rbac:level": 0,
+      "rbac:scope": "Platform",
+      "sec:grantsPermission": [
+        {"@id": "rbac:perm-all-data-rw"},
+        {"@id": "rbac:perm-all-config-rw"},
+        {"@id": "rbac:perm-all-agents-manage"},
+        {"@id": "rbac:perm-all-tenants-manage"},
+        {"@id": "rbac:perm-security-manage"},
+        {"@id": "rbac:perm-all-nav"}
+      ],
+      "sec:mapsToEA": {"@id": "ea:SecurityAdminRole"}
+    },
+
+    {
+      "@id": "rbac:PlatformAdmin",
+      "@type": "sec:CoreRole",
+      "name": "Platform Administrator",
+      "description": "Manages platform configuration, instance provisioning, and cross-instance operations. Cannot modify security policies directly.",
+      "rbac:level": 1,
+      "rbac:scope": "Platform",
+      "sec:inheritsFrom": {"@id": "rbac:SuperAdmin"},
+      "sec:grantsPermission": [
+        {"@id": "rbac:perm-platform-config-rw"},
+        {"@id": "rbac:perm-instance-provision"},
+        {"@id": "rbac:perm-cross-instance-read"},
+        {"@id": "rbac:perm-platform-nav"}
+      ]
+    },
+
+    {
+      "@id": "rbac:InstanceAdmin",
+      "@type": "sec:CoreRole",
+      "name": "Instance Administrator",
+      "description": "Manages a specific PF-Instance including user management, configuration, and instance-level security settings.",
+      "rbac:level": 2,
+      "rbac:scope": "Instance",
+      "sec:inheritsFrom": {"@id": "rbac:PlatformAdmin"},
+      "sec:boundToTenant": true,
+      "sec:grantsPermission": [
+        {"@id": "rbac:perm-instance-config-rw"},
+        {"@id": "rbac:perm-instance-users-manage"},
+        {"@id": "rbac:perm-instance-roles-manage"},
+        {"@id": "rbac:perm-instance-data-rw"},
+        {"@id": "rbac:perm-instance-nav"}
+      ]
+    },
+
+    {
+      "@id": "rbac:InstanceUser",
+      "@type": "sec:CoreRole",
+      "name": "Instance User",
+      "description": "Standard user within a PF-Instance with access to instance features based on assigned product/service roles.",
+      "rbac:level": 3,
+      "rbac:scope": "Instance",
+      "sec:inheritsFrom": {"@id": "rbac:InstanceAdmin"},
+      "sec:boundToTenant": true,
+      "sec:grantsPermission": [
+        {"@id": "rbac:perm-instance-data-read"},
+        {"@id": "rbac:perm-own-data-rw"},
+        {"@id": "rbac:perm-instance-features"},
+        {"@id": "rbac:perm-user-nav"}
+      ]
+    },
+
+    {
+      "@id": "rbac:AgentOperator",
+      "@type": "sec:AgentRole",
+      "name": "Agent Operator",
+      "description": "Security role for AI agents operating within PF-Core. Defines what data and functions agents can access.",
+      "rbac:level": 2,
+      "rbac:scope": "Agent",
+      "sec:grantsPermission": [
+        {"@id": "rbac:perm-agent-read-ontology"},
+        {"@id": "rbac:perm-agent-execute-workflow"},
+        {"@id": "rbac:perm-agent-write-audit"},
+        {"@id": "rbac:perm-agent-invoke-agent"}
+      ],
+      "sec:constrainedBy": [
+        {"@id": "sec:AgentTrustPolicy"},
+        {"@id": "sec:AgentActionAuditRequirement"}
+      ]
+    },
+
+    {
+      "@id": "rbac:ExternalAPI",
+      "@type": "sec:CoreRole",
+      "name": "External API Consumer",
+      "description": "Role for external systems and integrations accessing PF-Core via API. Scoped to specific endpoints and data.",
+      "rbac:level": 4,
+      "rbac:scope": "API",
+      "sec:grantsPermission": [
+        {"@id": "rbac:perm-api-read-scoped"},
+        {"@id": "rbac:perm-api-write-scoped"}
+      ],
+      "sec:constrainedBy": [
+        {"@id": "sec:APIRateLimitPolicy"},
+        {"@id": "sec:APIKeyRotationPolicy"}
+      ]
+    },
+
+    {
+      "@id": "rbac:ReadOnly",
+      "@type": "sec:CoreRole",
+      "name": "Read Only",
+      "description": "Minimum privilege role with read-only access to authorised data within tenant scope.",
+      "rbac:level": 5,
+      "rbac:scope": "Instance",
+      "sec:boundToTenant": true,
+      "sec:grantsPermission": [
+        {"@id": "rbac:perm-instance-data-read"},
+        {"@id": "rbac:perm-readonly-nav"}
+      ]
+    },
+
+    {
+      "@id": "sec:DBSecuritySchema",
+      "@type": "sec:SecurityControl",
+      "name": "Database Security Schema",
+      "description": "Supabase database-level security implementation",
+      "sec:tables": [
+        {
+          "@id": "sec:db-pf-roles",
+          "@type": "sec:SecurityControl",
+          "name": "pf_roles",
+          "description": "Core platform role definitions",
+          "sec:columns": ["id", "role_key", "display_name", "description", "level", "scope", "ontology_id", "is_active", "created_at", "updated_at"],
+          "sec:rlsPolicy": "Platform admins only"
+        },
+        {
+          "@id": "sec:db-pfi-roles",
+          "@type": "sec:SecurityControl",
+          "name": "pfi_roles",
+          "description": "Instance-specific role definitions extending core roles",
+          "sec:columns": ["id", "instance_id", "parent_role_id", "role_key", "display_name", "description", "permissions_json", "ontology_id", "is_active", "created_at", "updated_at"],
+          "sec:rlsPolicy": "Instance admins within their tenant",
+          "sec:foreignKeys": ["parent_role_id → pf_roles.id", "instance_id → pf_instances.id"]
+        },
+        {
+          "@id": "sec:db-role-permissions",
+          "@type": "sec:SecurityControl",
+          "name": "role_permissions",
+          "description": "Permission assignments to roles",
+          "sec:columns": ["id", "role_id", "permission_key", "resource_type", "resource_id", "actions", "conditions_json", "ontology_id", "created_at"],
+          "sec:rlsPolicy": "Role owner or platform admin"
+        },
+        {
+          "@id": "sec:db-user-roles",
+          "@type": "sec:SecurityControl",
+          "name": "user_roles",
+          "description": "Assignment of roles to users within tenant context",
+          "sec:columns": ["id", "user_id", "role_id", "tenant_id", "instance_id", "assigned_by", "valid_from", "valid_until", "is_active", "created_at"],
+          "sec:rlsPolicy": "Tenant-scoped, assigned by instance admin or above"
+        },
+        {
+          "@id": "sec:db-agent-identities",
+          "@type": "sec:SecurityControl",
+          "name": "agent_identities",
+          "description": "Security identities for AI agents",
+          "sec:columns": ["id", "agent_type", "agent_version", "role_id", "trust_level", "allowed_actions", "denied_actions", "ontology_id", "is_active", "created_at", "updated_at"],
+          "sec:rlsPolicy": "Platform admin only"
+        },
+        {
+          "@id": "sec:db-security-events",
+          "@type": "sec:SecurityControl",
+          "name": "security_events",
+          "description": "All security-relevant events for audit and monitoring",
+          "sec:columns": ["id", "event_type", "severity", "principal_id", "principal_type", "tenant_id", "resource_type", "resource_id", "action", "outcome", "details_json", "ip_address", "user_agent", "created_at"],
+          "sec:rlsPolicy": "Platform admin full access; instance admin own tenant",
+          "sec:indexes": ["event_type", "principal_id", "tenant_id", "created_at"]
+        },
+        {
+          "@id": "sec:db-audit-log",
+          "@type": "sec:SecurityControl",
+          "name": "audit_log",
+          "description": "General audit log for all data modifications",
+          "sec:columns": ["id", "table_name", "record_id", "action", "old_values", "new_values", "changed_by", "tenant_id", "created_at"],
+          "sec:rlsPolicy": "Tenant-scoped read for admins; write by system triggers only"
+        }
+      ]
+    },
+
+    {
+      "@id": "sec:TenantContextEnforcement",
+      "@type": "sec:SecurityControl",
+      "name": "Tenant Context Enforcement",
+      "description": "set_tenant_context() must be called on every authenticated request to establish tenant isolation boundary",
+      "sec:implementedBy": "Supabase RLS + Backend Middleware",
+      "sec:enforces": {"@id": "sec:TenantIsolationPolicy"},
+      "sec:validatedBy": "Automated security tests verifying cross-tenant access is blocked"
+    },
+
+    {
+      "@id": "sec:EASecurityMapping",
+      "@type": "sec:SecurityEntity",
+      "name": "Azlan EA Security Architecture Mapping",
+      "description": "Mapping between PF-Core security ontology and Azlan Enterprise Architecture SecurityArchitecture domain",
+      "sec:mappings": [
+        {"sec:source": "sec:SecurityPrincipal", "sec:target": "ea:Actor", "sec:mappingType": "equivalence"},
+        {"sec:source": "sec:Role", "sec:target": "ea:AccessPolicy", "sec:mappingType": "realisation"},
+        {"sec:source": "sec:SecurityPolicy", "sec:target": "ea:GovernancePolicy", "sec:mappingType": "specialisation"},
+        {"sec:source": "sec:SecurityControl", "sec:target": "ea:SecurityControl", "sec:mappingType": "equivalence"},
+        {"sec:source": "sec:AuditEvent", "sec:target": "ea:MonitoringEvent", "sec:mappingType": "specialisation"},
+        {"sec:source": "sec:Tenant", "sec:target": "ea:OrganizationalUnit", "sec:mappingType": "realisation"},
+        {"sec:source": "sec:ComplianceRequirement", "sec:target": "ea:ComplianceRequirement", "sec:mappingType": "equivalence"},
+        {"sec:source": "rbac:InstanceAdmin", "sec:target": "ea:SystemAdministrator", "sec:mappingType": "specialisation"},
+        {"sec:source": "sec:AgentPrincipal", "sec:target": "ea:SoftwareAgent", "sec:mappingType": "equivalence"},
+        {"sec:source": "sec:RLSPolicy", "sec:target": "ea:DataGovernancePolicy", "sec:mappingType": "specialisation"}
+      ]
+    },
+
+    {
+      "@id": "sec:ComplianceMapping",
+      "@type": "sec:SecurityEntity",
+      "name": "Compliance Framework Mapping",
+      "sec:frameworkMappings": [
+        {
+          "framework": "GDPR",
+          "controls": [
+            {"requirement": "Article 5 - Data Minimisation", "sec:implementedBy": ["sec:RLSPolicy", "sec:TenantIsolationPolicy"]},
+            {"requirement": "Article 25 - Data Protection by Design", "sec:implementedBy": ["sec:EncryptionControl", "sec:TenantContextEnforcement"]},
+            {"requirement": "Article 30 - Records of Processing", "sec:implementedBy": ["sec:db-audit-log", "sec:db-security-events"]},
+            {"requirement": "Article 32 - Security of Processing", "sec:implementedBy": ["sec:AuthenticationControl", "sec:AuthorisationControl"]}
+          ]
+        },
+        {
+          "framework": "OWASP Top 10 (2021)",
+          "controls": [
+            {"requirement": "A01 Broken Access Control", "sec:implementedBy": ["sec:RLSPolicy", "sec:AuthorisationControl", "rbac:CoreRoleHierarchy"]},
+            {"requirement": "A02 Cryptographic Failures", "sec:implementedBy": ["sec:EncryptionControl"]},
+            {"requirement": "A04 Insecure Design", "sec:implementedBy": ["sec:SecurityInheritanceModel"]},
+            {"requirement": "A07 Identification & Authentication", "sec:implementedBy": ["sec:AuthenticationControl", "sec:SessionPolicy"]},
+            {"requirement": "A09 Security Logging & Monitoring", "sec:implementedBy": ["sec:db-security-events", "sec:db-audit-log"]}
+          ]
+        }
+      ]
+    },
+
+    {
+      "@id": "sec:AgentTrustMatrix",
+      "@type": "sec:AgentTrustPolicy",
+      "name": "PF-Core Agent Trust Matrix",
+      "description": "Defines which agents can invoke which other agents and with what authority level",
+      "sec:trustRelationships": [
+        {"agent": "PF Manager", "canInvoke": ["PF Architect", "PF Builder", "PF VE", "PF CE", "PF Security Manager"], "trustLevel": "Full"},
+        {"agent": "PF Architect", "canInvoke": ["PF Builder", "PF OAA", "PF Gap Analysis"], "trustLevel": "Full"},
+        {"agent": "PF Security Manager", "canInvoke": ["PF Architect"], "trustLevel": "Advisory"},
+        {"agent": "PF Builder", "canInvoke": ["PF Designer"], "trustLevel": "Scoped"},
+        {"agent": "PF VE", "canInvoke": ["PF CE"], "trustLevel": "Scoped"},
+        {"agent": "PF OAA", "canInvoke": [], "trustLevel": "Readonly"},
+        {"agent": "PE Process Engineer", "canInvoke": ["PF Security Manager"], "trustLevel": "Advisory"}
+      ],
+      "sec:trustLevelDefinitions": {
+        "Full": "Can invoke agent and act on results without approval",
+        "Advisory": "Can request analysis; cannot trigger state changes",
+        "Scoped": "Can invoke within defined scope boundaries only",
+        "Readonly": "Can read agent outputs but cannot invoke"
+      }
+    }
+  ]
+}
